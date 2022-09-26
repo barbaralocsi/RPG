@@ -17,12 +17,6 @@ public class Mover : MonoBehaviour
             MoveToCursor();
         }
 
-        // if(Input.GetMouseButtonUp(0))
-        // {
-        //     // Stop movement when the mouse button is released
-        //     GetComponent<NavMeshAgent>().destination = transform.position;
-        // }
-
         UpdateAnimator();
         //Debug.DrawRay(lastRay.origin, lastRay.direction * 1000);
     }
