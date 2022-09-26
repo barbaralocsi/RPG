@@ -10,42 +10,53 @@ namespace RPG.Control
 
         private void Update()
         {
-            InteractWithCombat();
-            InteractWithMovement();
+            if (InteractWithCombat())
+            {
+                return;
+            }
+
+            if (InteractWithMovement())
+            {
+                return;
+            }
+
+            print("Nothing to do.");
         }
 
-        private void InteractWithCombat()
+        private bool InteractWithCombat()
         {
-            if (Input.GetMouseButtonDown(0))
+            var hits = Physics.RaycastAll(GetMouseRay());
+            foreach (var hit in hits)
             {
-                var hits = Physics.RaycastAll(GetMouseRay());
-                foreach (var hit in hits)
+                var combatTarget = hit.transform.GetComponent<CombatTarget>();
+                if (combatTarget == null)
                 {
-                    var combatTarget = hit.transform.GetComponent<CombatTarget>();
-                    if (combatTarget != null)
-                    {
-                        GetComponent<Fighter>().Attack(combatTarget);
-                        break;
-                    }
+                    continue;
                 }
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    GetComponent<Fighter>().Attack(combatTarget);
+                }
+
+                return true;
             }
+            return false;
         }
 
-        private void InteractWithMovement()
-        {
-            if (Input.GetMouseButton(0))
-            {
-                MoveToCursor();
-            }
-        }
-
-        private void MoveToCursor()
+        private bool InteractWithMovement()
         {
             bool hasHit = Physics.Raycast(GetMouseRay(), out var hitInfo);
             if (hasHit)
             {
-                GetComponent<Mover>().MoveTo(hitInfo.point);
+                if (Input.GetMouseButton(0))
+                {
+                    GetComponent<Mover>().MoveTo(hitInfo.point);
+                }
+                return true;
             }
+
+            return false;
         }
 
         private static Ray GetMouseRay()
