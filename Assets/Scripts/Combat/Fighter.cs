@@ -1,9 +1,10 @@
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
+
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
 
@@ -23,12 +24,11 @@ namespace RPG.Combat
 
             if (!IsInRange())
             {
-                
                 mover.MoveTo(target.position);
             }
             else
             {
-                mover.Stop();
+                mover.Cancel();
                 //print("Attacking!");
             }
 
@@ -45,7 +45,7 @@ namespace RPG.Combat
         {
             // Move towards the target and attack it.
             // Keep in mind that the enemy might be also moving!
-            
+
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.transform;
         }
