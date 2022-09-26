@@ -1,3 +1,4 @@
+using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 namespace RPG.Combat
@@ -22,12 +23,13 @@ namespace RPG.Combat
 
             if (!IsInRange())
             {
+                
                 mover.MoveTo(target.position);
             }
             else
             {
                 mover.Stop();
-                print("Attacking!");
+                //print("Attacking!");
             }
 
         }
@@ -43,7 +45,8 @@ namespace RPG.Combat
         {
             // Move towards the target and attack it.
             // Keep in mind that the enemy might be also moving!
-
+            
+            GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.transform;
         }
 
