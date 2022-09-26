@@ -15,16 +15,17 @@ namespace RPG.Combat
                 // Check distance of the target and the fighter.
                 // If it's close enough, then we need to stop the movement!
                 var distance = Vector3.Distance(transform.position, target.position);
-                var isInRange = distance > weaponRange;
+                var isNotInRange = distance > weaponRange;
                 var mover = GetComponent<Mover>();
 
-                if (isInRange)
+                if (isNotInRange)
                 {
                     mover.MoveTo(target.position);
                 }
                 else
                 {
                     mover.Stop();
+                    print("Attacking!");
                 }
             }
         }
@@ -37,7 +38,7 @@ namespace RPG.Combat
             target = combatTarget.transform;
         }
 
-        public void StopAttack()
+        public void Cancel()
         {
             target = null;
         }

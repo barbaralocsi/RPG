@@ -41,11 +41,11 @@ namespace RPG.Control
 
                 return true;
             }
-            
-            if (Input.GetMouseButtonDown(0))
-            {
-                GetComponent<Fighter>().StopAttack();
-            }
+
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     GetComponent<Fighter>().StopAttack();
+            // }
 
             return false;
         }
@@ -57,7 +57,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().MoveTo(hitInfo.point);
+                    GetComponent<Mover>().StartMoveAction(hitInfo.point);
                 }
                 return true;
             }
