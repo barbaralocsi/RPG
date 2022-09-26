@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+namespace RPG.Movement;
 
 public class Mover : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Mover : MonoBehaviour
         Vector3 localVelocity = transform.InverseTransformDirection(velocity);
 
         float speed = localVelocity.z;
-        
+
         // Set the animators blend valut to be equal to our desired forward speed (on the Z axis)
         GetComponent<Animator>().SetFloat("forwardSpeed", speed);
     }

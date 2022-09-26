@@ -1,4 +1,6 @@
+using RPG.Movement;
 using UnityEngine;
+namespace RPG.Control;
 
 public class PlayerController : MonoBehaviour {
 
