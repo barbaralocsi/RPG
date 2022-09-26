@@ -16,6 +16,7 @@ public class Mover : MonoBehaviour
         {
             MoveToCursor();
         }
+        UpdateAnimator();
         //Debug.DrawRay(lastRay.origin, lastRay.direction * 1000);
     }
 
@@ -28,5 +29,18 @@ public class Mover : MonoBehaviour
         {
             GetComponent<NavMeshAgent>().destination = hitInfo.point;
         }
+    }
+
+    private void UpdateAnimator()
+    {
+        Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+
+        // Convert this to the local value relative to the character - taking from global converting to local
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+
+        float speed = localVelocity.z;
+
+        // Set the animators blend valut to be equal to our desired forward speed (on the Z axis)
+        GetComponent<Animator>().SetFloat("forwardSpeed", speed);
     }
 }
