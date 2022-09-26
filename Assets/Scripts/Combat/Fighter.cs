@@ -10,23 +10,26 @@ namespace RPG.Combat
 
         private void Update()
         {
-            if (target != null)
+            if (target == null)
             {
-                var mover = GetComponent<Mover>();
-                
-                // Check distance of the target and the fighter.
-                // If it's close enough, then we need to stop the movement!
-
-                if (!IsInRange())
-                {
-                    mover.MoveTo(target.position);
-                }
-                else
-                {
-                    mover.Stop();
-                    print("Attacking!");
-                }
+                return;
             }
+
+            var mover = GetComponent<Mover>();
+
+            // Check distance of the target and the fighter.
+            // If it's close enough, then we need to stop the movement!
+
+            if (!IsInRange())
+            {
+                mover.MoveTo(target.position);
+            }
+            else
+            {
+                mover.Stop();
+                print("Attacking!");
+            }
+
         }
 
         private bool IsInRange()
