@@ -1999,41 +1999,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Follow Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.039873414
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9492512
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.28152418
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.13444896
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486512114910715111, guid: ba5df56b825a5ee46959aea87a6b2253,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.28
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5df56b825a5ee46959aea87a6b2253, type: 3}
 --- !u!1001 &7304343999237529998
