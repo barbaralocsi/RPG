@@ -11,7 +11,12 @@ namespace RPG.Movement
         [SerializeField]
         Transform target;
 
-        // Update is called once per frame
+        NavMeshAgent navMeshAgent;
+
+        private void Start() {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
         void Update()
         {
             UpdateAnimator();
@@ -19,12 +24,18 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            GetComponent<NavMeshAgent>().destination = destination;
+            navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
+        }
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
         }
 
         private void UpdateAnimator()
         {
-            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 velocity = navMeshAgent.velocity;
 
             // Convert this to the local value relative to the character - taking from global converting to local
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);

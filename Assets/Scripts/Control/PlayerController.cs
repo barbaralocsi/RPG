@@ -41,6 +41,12 @@ namespace RPG.Control
 
                 return true;
             }
+            
+            if (Input.GetMouseButtonDown(0))
+            {
+                GetComponent<Fighter>().StopAttack();
+            }
+
             return false;
         }
 
