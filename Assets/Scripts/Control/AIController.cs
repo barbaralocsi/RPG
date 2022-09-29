@@ -20,7 +20,7 @@ namespace RPG.Control
 
         private void Update()
         {
-            if(health.IsDead())
+            if (health.IsDead())
             {
                 return;
             }
@@ -48,6 +48,13 @@ namespace RPG.Control
         private float DistanceToTarget(GameObject target)
         {
             return Vector3.Distance(transform.position, target.transform.position);
+        }
+
+        // Called by Unity
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
         }
     }
 }
