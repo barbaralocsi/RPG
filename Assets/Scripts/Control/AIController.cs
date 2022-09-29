@@ -5,14 +5,22 @@ namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
-        // Start is called before the first frame update
         [SerializeField] float chaseDistance = 5f;
+        private Fighter fighter;
+        private GameObject player;
+
+        private void Start()
+        {
+            fighter = GetComponent<Fighter>();
+            player = GameObject.FindWithTag("Player");
+        }
 
         private void Update()
         {
-            if (DistanceToPlayer() < chaseDistance)
+            
+            if (InAttackRangeOf(player) && fighter.CanAttack(player))
             {
-                Attack();
+                fighter.Attack(player);
             }
             else
             {
@@ -22,29 +30,17 @@ namespace RPG.Control
 
         private void StopAttack()
         {
-            var fighter = GetComponent<Fighter>();
             fighter.Cancel();
         }
 
-        private void Attack()
+        private bool InAttackRangeOf(GameObject target)
         {
-            print($"{gameObject.name}: chase the player!");
-            var targetGameObject = GameObject.FindWithTag("Player");
-            var fighter = GetComponent<Fighter>();
-
-            if (!fighter.CanAttack(targetGameObject))
-            {
-                return;
-            }
-
-            fighter.Attack(targetGameObject);
+            return DistanceToTarget(target) < chaseDistance;
         }
 
-        private float DistanceToPlayer()
+        private float DistanceToTarget(GameObject target)
         {
-            var player = GameObject.FindWithTag("Player");
-            var distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            return distanceToPlayer;
+            return Vector3.Distance(transform.position, target.transform.position);
         }
     }
 }
