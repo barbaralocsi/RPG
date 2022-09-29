@@ -12,20 +12,20 @@ namespace RPG.Control
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                var current = GetWayPointPosition(i);
-                var next = GetWayPointPosition(GetNextIndex(i));
+                var current = GetWaypointPosition(i);
+                var next = GetWaypointPosition(GetNextIndex(i));
 
                 DrawWayPoint(current);
                 DrawPathBetween(current, next);
             }
         }
 
-        private int GetNextIndex(int i)
+        public int GetNextIndex(int i)
         {
             return (i + 1) % transform.childCount;
         }
 
-        private Vector3 GetWayPointPosition(int i)
+        public Vector3 GetWaypointPosition(int i)
         {
             return transform.GetChild(i).position;
         }
