@@ -10,20 +10,25 @@ namespace RPG.Control
 
         private void OnDrawGizmos()
         {
-            var first = transform.GetChild(0);
+            var first = GetWayPointPosition(0);
             var current  = first;
-            DrawWayPoint(current.position);
+            DrawWayPoint(current);
 
             for (int i = 1; i < transform.childCount; i++)
             {
                 var previous = current;
-                current = transform.GetChild(i);
+                current = GetWayPointPosition(i);
 
-                DrawWayPoint(current.transform.position);
+                DrawWayPoint(current);
                 DrawPathBetween(previous, current);
             }
 
             DrawPathBetween(first, current);
+        }
+
+        private Vector3 GetWayPointPosition(int i)
+        {
+            return transform.GetChild(i).position;
         }
 
         private void DrawWayPoint(Vector3 position)
@@ -31,9 +36,9 @@ namespace RPG.Control
             Gizmos.DrawSphere(position, wayPointGizmoRadius);
         }
 
-        private void DrawPathBetween(Transform from, Transform to)
+        private void DrawPathBetween(Vector3 from, Vector3 to)
         {
-            Gizmos.DrawLine(from.position, to.position);
+            Gizmos.DrawLine(from, to);
         }
     }
 }
