@@ -10,13 +10,21 @@ namespace RPG.Movement
         Transform target;
 
         NavMeshAgent navMeshAgent;
+        private Health health;
 
-        private void Start() {
+        private void Start()
+        {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            health = GetComponent<Health>();
         }
 
         void Update()
         {
+            if (health.IsDead())
+            {
+                navMeshAgent.enabled = false;
+            }
+
             UpdateAnimator();
         }
 
