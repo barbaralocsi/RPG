@@ -10,20 +10,19 @@ namespace RPG.Control
 
         private void OnDrawGizmos()
         {
-            var first = GetWayPointPosition(0);
-            var current  = first;
-            DrawWayPoint(current);
-
-            for (int i = 1; i < transform.childCount; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                var previous = current;
-                current = GetWayPointPosition(i);
+                var current = GetWayPointPosition(i);
+                var next = GetWayPointPosition(GetNextIndex(i));
 
                 DrawWayPoint(current);
-                DrawPathBetween(previous, current);
+                DrawPathBetween(current, next);
             }
+        }
 
-            DrawPathBetween(first, current);
+        private int GetNextIndex(int i)
+        {
+            return (i + 1) % transform.childCount;
         }
 
         private Vector3 GetWayPointPosition(int i)
