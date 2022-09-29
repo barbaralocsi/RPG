@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using RPG.Combat;
 using UnityEngine;
 
 namespace RPG.Control
@@ -13,8 +12,32 @@ namespace RPG.Control
         {
             if (DistanceToPlayer() < chaseDistance)
             {
-                print($"{gameObject.name}: chase the player!");
+                Attack();
             }
+            else
+            {
+                StopAttack();
+            }
+        }
+
+        private void StopAttack()
+        {
+            var fighter = GetComponent<Fighter>();
+            fighter.Cancel();
+        }
+
+        private void Attack()
+        {
+            print($"{gameObject.name}: chase the player!");
+            var targetGameObject = GameObject.FindWithTag("Player");
+            var fighter = GetComponent<Fighter>();
+
+            if (!fighter.CanAttack(targetGameObject))
+            {
+                return;
+            }
+
+            fighter.Attack(targetGameObject);
         }
 
         private float DistanceToPlayer()

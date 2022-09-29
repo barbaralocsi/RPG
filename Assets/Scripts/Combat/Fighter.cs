@@ -60,11 +60,11 @@ namespace RPG.Combat
         // Handling the animation hit event
         void Hit()
         {
-            if(target == null)
+            if (target == null)
             {
                 return;
             }
-            
+
             target.TakeDamage(weaponDamage);
         }
 
@@ -75,18 +75,17 @@ namespace RPG.Combat
             return isNotInRange;
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject targetGameObject)
         {
             // Move towards the target and attack it.
             // Keep in mind that the enemy might be also moving!
-
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>();
+            target = targetGameObject.GetComponent<Health>();
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject targetGameObject)
         {
-            return combatTarget != null && !combatTarget.GetComponent<Health>().IsDead();
+            return targetGameObject != null && !targetGameObject.GetComponent<Health>().IsDead();
         }
 
         public void Cancel()

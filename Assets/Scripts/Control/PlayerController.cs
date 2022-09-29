@@ -29,17 +29,22 @@ namespace RPG.Control
             foreach (var hit in hits)
             {
                 var combatTarget = hit.transform.GetComponent<CombatTarget>();
-
+                if(combatTarget == null)
+                {
+                    continue;
+                }
+                
+                var targetGameObject = combatTarget.gameObject;
                 var fighter = GetComponent<Fighter>();
 
-                if (!fighter.CanAttack(combatTarget))
+                if (!fighter.CanAttack(targetGameObject))
                 {
                     continue;
                 }
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    fighter.Attack(combatTarget);
+                    fighter.Attack(targetGameObject);
                 }
 
                 return true;
