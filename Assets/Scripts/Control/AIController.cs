@@ -9,14 +9,19 @@ namespace RPG.Control
         // Start is called before the first frame update
         [SerializeField] float chaseDistance = 5f;
 
-        private void Update() {
+        private void Update()
+        {
+            if (DistanceToPlayer() < chaseDistance)
+            {
+                print($"{gameObject.name}: chase the player!");
+            }
+        }
+
+        private float DistanceToPlayer()
+        {
             var player = GameObject.FindWithTag("Player");
             var distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-            if(distanceToPlayer < chaseDistance)
-            {
-                print($"{this}: chase the player!");
-            }
+            return distanceToPlayer;
         }
     }
 }
