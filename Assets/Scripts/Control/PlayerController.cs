@@ -1,5 +1,6 @@
 using System;
 using RPG.Combat;
+using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 
@@ -8,8 +9,21 @@ namespace RPG.Control
     public class PlayerController : MonoBehaviour
     {
 
+        private Health health;
+
+        private void Start()
+        {
+
+            health = GetComponent<Health>();
+        }
+
         private void Update()
         {
+            if (health.IsDead())
+            {
+                return;
+            }
+
             if (InteractWithCombat())
             {
                 return;
@@ -29,11 +43,11 @@ namespace RPG.Control
             foreach (var hit in hits)
             {
                 var combatTarget = hit.transform.GetComponent<CombatTarget>();
-                if(combatTarget == null)
+                if (combatTarget == null)
                 {
                     continue;
                 }
-                
+
                 var targetGameObject = combatTarget.gameObject;
                 var fighter = GetComponent<Fighter>();
 
@@ -49,7 +63,7 @@ namespace RPG.Control
 
                 return true;
             }
-            
+
             return false;
         }
 
