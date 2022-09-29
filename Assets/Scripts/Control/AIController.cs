@@ -40,14 +40,9 @@ namespace RPG.Control
             }
             else
             {
-                StopAttack();
+                // Starting a move action automatically cancels the attack action.
                 mover.StartMoveAction(guardPosition);
             }
-        }
-
-        private void StopAttack()
-        {
-            fighter.Cancel();
         }
 
         private bool InAttackRangeOf(GameObject target)
